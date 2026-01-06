@@ -1,5 +1,0 @@
-#!/usr/bin/with-contenv bashio
-
-bashio::log.info "Démarrage de nginx sur le port 8099..."
-
-exec nginx -g "daemon off;"
