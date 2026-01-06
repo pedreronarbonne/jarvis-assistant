@@ -1,4 +1,4 @@
-#!/usr/bin/with-contenv sh
+#!/usr/bin/with-contenv bash
 set -e
 
 bashio::log.info "Configuration de Jarvis Assistant..."
@@ -14,4 +14,5 @@ else
 fi
 
 bashio::log.info "Configuration terminée"
+
 
