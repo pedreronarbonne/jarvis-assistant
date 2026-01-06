@@ -1,15 +1,11 @@
-#!/usr/bin/with-contenv bash
+ARG BUILD_FROM
+FROM $BUILD_FROM
 
-bashio::log.info "Démarrage de Jarvis Assistant"
+RUN apk add --no-cache nginx
 
-ASSISTANT_ID=$(bashio::config 'assistant_id')
+RUN mkdir -p /var/www/html /run/nginx
 
-if [ -n "$ASSISTANT_ID" ]; then
-    bashio::log.info "Injection de l'assistant_id : $ASSISTANT_ID"
-    sed -i "s|conversation.hf_co_unsloth_qwen3_vl_8b_instruct_gguf_q8_0_ai_agent|$ASSISTANT_ID|g" /var/www/html/index.html
-else
-    bashio::log.warning "Aucun assistant_id fourni"
-fi
+COPY www/ /var/www/html/
+COPY nginx.conf /etc/nginx/nginx.conf
 
-bashio::log.info "Lancement de nginx"
-exec nginx -g "daemon off;"
+COPY rootfs /
