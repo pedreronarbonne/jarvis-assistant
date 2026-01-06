@@ -1,4 +1,5 @@
-#!/usr/bin/with-contenv bashio
+#!/usr/bin/with-contenv bash
+set -e
 
 bashio::log.info "Démarrage de nginx sur le port 8099..."
 
