@@ -14,7 +14,7 @@ arch:
 startup: application
 boot: auto
 
-# IMPORTANT pour s6-overlay
+# Important pour s6-overlay
 init: false
 
 ingress: true
