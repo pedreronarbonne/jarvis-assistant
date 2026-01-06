@@ -1,29 +1,39 @@
-{
-  "name": "Jarvis Assistant",
-  "version": "1.0.0",
-  "slug": "jarvis-assistant",
-  "description": "Interface de chat intelligente pour contrôler Home Assistant avec un assistant IA",
-  "url": "https://github.com/pedreronarbonne/jarvis-assistant",
-  "arch": ["armhf", "armv7", "aarch64", "amd64", "i386"],
-  "startup": "application",
-  "boot": "auto",
-  "ingress": true,
-  "ingress_port": 8099,
-  "panel_icon": "mdi:robot",
-  "panel_title": "Jarvis",
-  "hassio_api": true,
-  "hassio_role": "default",
-  "homeassistant_api": true,
-  "ports": {
-    "8099/tcp": null
-  },
-  "ports_description": {
-    "8099/tcp": "Web interface (not needed with ingress)"
-  },
-  "options": {
-    "assistant_id": "conversation.hf_co_unsloth_qwen3_vl_8b_instruct_gguf_q8_0_ai_agent"
-  },
-  "schema": {
-    "assistant_id": "str"
-  }
-}
+name: Jarvis Assistant
+version: "1.0.0"
+slug: jarvis-assistant
+description: Interface de chat intelligente pour contrôler Home Assistant avec un assistant IA
+url: https://github.com/pedreronarbonne/jarvis-assistant
+
+arch:
+  - armhf
+  - armv7
+  - aarch64
+  - amd64
+  - i386
+
+startup: application
+boot: auto
+
+# IMPORTANT pour s6-overlay
+init: false
+
+ingress: true
+ingress_port: 8099
+panel_icon: mdi:robot
+panel_title: Jarvis
+
+hassio_api: true
+hassio_role: default
+homeassistant_api: true
+
+ports:
+  8099/tcp: null
+
+ports_description:
+  8099/tcp: Web interface (not needed with ingress)
+
+options:
+  assistant_id: conversation.hf_co_unsloth_qwen3_vl_8b_instruct_gguf_q8_0_ai_agent
+
+schema:
+  assistant_id: str
