@@ -11,5 +11,4 @@ else
     bashio::log.warning "Aucun assistant_id fourni"
 fi
 
-bashio::log.info "Lancement de nginx"
 exec nginx -g "daemon off;"
