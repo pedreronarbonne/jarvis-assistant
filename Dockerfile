@@ -1,23 +1,23 @@
 ARG BUILD_FROM
 FROM ${BUILD_FROM}
 
-# Install nginx + bash (IMPORTANT)
-RUN apk add --no-cache nginx bash
+# Installer bash + nginx
+RUN apk add --no-cache bash nginx
 
-# Create necessary directories
+# Créer les dossiers nécessaires
 RUN mkdir -p /var/www/html /run/nginx /var/log/nginx
 
-# Copy web files
+# Copier les fichiers web
 COPY www /var/www/html
-
-# Copy nginx config
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# Copy rootfs
+# Copier rootfs (scripts cont-init, services.d, etc.)
 COPY rootfs /
 
-# Fix permissions for all scripts
-RUN chmod +x /etc/cont-init.d/00-config.sh && \
+# Rendre les scripts exécutables
+RUN chmod +x /etc/cont-init.d/*.sh && \
     chmod +x /etc/services.d/nginx/run && \
     chmod +x /etc/services.d/nginx/finish
 
+# CMD par défaut (s6-overlay gère /init)
+# Aucun CMD à ajouter, l'image de base HA s'en charge
