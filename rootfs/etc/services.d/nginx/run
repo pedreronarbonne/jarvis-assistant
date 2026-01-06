@@ -1,14 +1,1 @@
-#!/usr/bin/with-contenv bash
 
-bashio::log.info "Démarrage de Jarvis Assistant"
-
-ASSISTANT_ID=$(bashio::config 'assistant_id')
-
-if [ -n "$ASSISTANT_ID" ]; then
-    bashio::log.info "Injection de l'assistant_id : $ASSISTANT_ID"
-    sed -i "s|conversation.hf_co_unsloth_qwen3_vl_8b_instruct_gguf_q8_0_ai_agent|$ASSISTANT_ID|g" /var/www/html/index.html
-else
-    bashio::log.warning "Aucun assistant_id fourni"
-fi
-
-exec nginx -g "daemon off;"
